@@ -11,6 +11,7 @@ import {UserService} from './../shared/services/login.service';
 import {Routes, RouterModule} from '@angular/router';
 import { ToolbarComponent } from './../components/toolbar/toolbar.component';
 import { AdvertisersComponent } from './../components/advertisers/advertisers.component';
+import { AgencyComponent } from './../components/agency/agency.component';
 // import { SITE_ROUTES} from './../routes/site.routes';
 
 const appRoutes: Routes = [
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'advertisers',
     component: AdvertisersComponent
+  },
+  {
+    path: 'agency',
+    component: AgencyComponent
   },
 ];
 
@@ -41,7 +46,8 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent,
     ToolbarComponent,
-    AdvertisersComponent
+    AdvertisersComponent,
+    AgencyComponent
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
