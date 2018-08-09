@@ -10,8 +10,7 @@
       <div class="col-md-12">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="exampleInputName">Name</label>
-                  <input class="form-control" id="name1" type="text" value="" name="name1">
+                  <input class="form-control" id="name1" type="text" value="" name="name1" placeholder="Search by Name, Email">
               </div>
               <div class="form-group">
                   <input type="submit" (click)="searchAdvertisers()" id="submit_button" name="submit_button"  value="SEARCH" class="btn btn-primary btn-block">
@@ -24,25 +23,30 @@
       <div class="row">
           <div class="col-md-12">
 
-            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+        <table *ngIf="!isNoRecord" class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
-                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 261px;">Name</th>
+                <tr role="row">
+                  <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 261px;">Name</th>
                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 394px;">Email</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 194px;">Office</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 100px;">Age</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 189px;">Start date</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 156px;">Salary</th></tr>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 194px;">Is Active</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 100px;">Address</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 189px;">Created date</th>
               </thead>
               <tbody>
                 
-              <tr role="row" *ngFor="let advertisers of advertisers ">
+                <tr role="row" *ngFor="let advertisers of advertisers ">
                   <td >{{advertisers.name}}</td>
                   <td>{{advertisers.email}}</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
+                  <td>{{advertisers.is_active}}</td>
+                  <td>{{advertisers.address1}}</td>
+                  <td>{{advertisers.created_at}}</td>
                 </tr>
             </tbody>
+        </table>
+        <table *ngIf="isNoRecord" class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+        <tbody>
+            No Records Found        
+        </tbody>
           </table>
         </div>
       </div>

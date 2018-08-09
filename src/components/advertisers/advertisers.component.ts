@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdvertiserService} from './../../shared/services/advertisers.service';
 
-declare var jquery;
+declare var jQuery: any;
 
 @Component({
   selector: 'ef-advertisers',
@@ -9,6 +9,7 @@ declare var jquery;
 })
 
 export class AdvertisersComponent implements OnInit {
+  isNoRecord : Boolean = false;
 
   advertisers:any;
   constructor( private _advertisers : AdvertiserService) {
@@ -16,32 +17,12 @@ export class AdvertisersComponent implements OnInit {
   }
 
 ngOnInit() {
-    console.log('advertisers?///////////////////');
-    //this.getAdvertisers();
+    this.getAdvertisers();
 }
 
-// getAdvertisers(){
-  
-//     this._advertisers.getAdvertisers()
-//     .subscribe((data :any) =>  {
-//       if(!data.error){
-//         // this.advertisers = {
-//         //   "name" : data.advertisers_info.name
-//         // };
-//         this.advertisers = data.advertisers_info;
-//         console.log('ok', data.advertisers_info.name);
-//       }else{
-       
-//         console.log('Wrong');
-//       }
-//     });
-// }
-
-searchAdvertisers(){
-
-
- 
-  this._advertisers.getAdvertisers('general')
+getAdvertisers(){
+    let name ='';
+    this._advertisers.getAdvertisers(name,1)
     .subscribe((data :any) =>  {
       if(!data.error){
         // this.advertisers = {
@@ -51,6 +32,22 @@ searchAdvertisers(){
         console.log('ok', data.advertisers_info.name);
       }else{
        
+        console.log('Wrong');
+      }
+    });
+}
+
+searchAdvertisers(){
+  let searchBy = jQuery('#name1').val();
+  this.isNoRecord = false;
+  console.log(name,'-------------------');
+  this._advertisers.getAdvertisers(searchBy, 1)
+    .subscribe((data :any) =>  {
+      if(!data.error){
+        this.advertisers = data.advertisers_info;
+        console.log('ok', data.advertisers_info.name);
+      }else{
+        this.isNoRecord = true;
         console.log('Wrong');
       }
     });

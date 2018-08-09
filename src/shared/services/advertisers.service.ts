@@ -11,8 +11,8 @@ export class AdvertiserService {
   ) {
   }
 
-  getAdvertisers (name:any): Observable<Login> {
-    let url = "https://www.electrical-training.com/crm/api.php?action=fetch_advertisers&name="+name;
+  getAdvertisers (name:any, offset: any): Observable<Login> {
+    let url = "https://www.electrical-training.com/crm/api.php?action=fetch_advertisers&name="+name+'&offset='+offset;
     const httpOptions = {
         headers: new HttpHeaders({
         })
