@@ -22,10 +22,11 @@ export class LoginComponent implements OnInit {
 ngOnInit() {
     this.loginForm = new FormGroup({
         'email': new FormControl(this.model.email, [
-          Validators.required,
-          Validators.minLength(4)
+          Validators.required
         ]),
-        'password': new FormControl(this.model.password)
+        'password': new FormControl(this.model.password,[
+          Validators.required
+        ])
       });
    this.isLoggedIn = localStorage.getItem('logged');  
    if(this.isLoggedIn=='true'){
