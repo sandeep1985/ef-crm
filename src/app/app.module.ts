@@ -9,6 +9,8 @@ import { LoginComponent } from './../shared/components/login/login.component';
 import { DashboardComponent } from './../components/dashboard/dashboard.component';
 import {UserService} from './../shared/services/login.service';
 import {Routes, RouterModule} from '@angular/router';
+import { ToolbarComponent } from './../components/toolbar/toolbar.component';
+import { AdvertisersComponent } from './../components/advertisers/advertisers.component';
 // import { SITE_ROUTES} from './../routes/site.routes';
 
 const appRoutes: Routes = [
@@ -19,6 +21,10 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'advertisers',
+    component: AdvertisersComponent
   },
 ];
 
@@ -33,7 +39,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ToolbarComponent,
+    AdvertisersComponent
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

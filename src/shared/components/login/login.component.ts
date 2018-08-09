@@ -4,7 +4,7 @@ import { Login } from './../../models/login';
 import {UserService} from './../../services/login.service';
 import {Router} from '@angular/router';
 
-
+declare var window: any;
 
 @Component({
   selector: 'ef-login',
@@ -34,6 +34,7 @@ ngOnInit() {
    }else{
     this._router.navigateByUrl('/login');
    }
+   console.log(window.location,'&&&&&&&&&&&');
 }
 
 onSubmit(){
@@ -41,7 +42,8 @@ onSubmit(){
     .subscribe((data :any) =>  {
       if(!data.error){
         localStorage.setItem('logged','true');
-        this._router.navigateByUrl('/dashboard');
+        window.location.href = window.location.origin + '/dashboard';
+        //this._router.navigateByUrl('/dashboard');
       }else{
         console.log('Wrong');
       }
