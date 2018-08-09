@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Login } from './../../models/login';
 import {UserService} from './../../services/login.service';
+import {Router} from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import {UserService} from './../../services/login.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   model = new Login('', '');
-  constructor(private _userService : UserService ) {
+  isLoggedIn : any;
+  constructor(private _userService : UserService, private _router : Router ) {
 
   }
 
@@ -25,17 +27,23 @@ ngOnInit() {
         ]),
         'password': new FormControl(this.model.password)
       });
+   this.isLoggedIn = localStorage.getItem('logged');  
+   if(this.isLoggedIn=='true'){
+    this._router.navigateByUrl('/dashboard');
+   }else{
+    this._router.navigateByUrl('/login');
+   }
 }
 
 onSubmit(){
-      console.log(this.model.email,'$$$$$',this.model.password);
-      let data  ={
-          email: this.model.email,
-          password : this.model.password
-      }
     this._userService.login(this.model.email, this.model.password)
     .subscribe((data :any) =>  {
-       console.log(data,'&&&&&&&&&&&&&&&&&');
+      if(!data.error){
+        localStorage.setItem('logged','true');
+        this._router.navigateByUrl('/dashboard');
+      }else{
+        console.log('Wrong');
+      }
     });
 }
 
