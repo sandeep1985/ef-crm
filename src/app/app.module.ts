@@ -12,6 +12,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { ToolbarComponent } from './../components/toolbar/toolbar.component';
 import { AdvertisersComponent } from './../components/advertisers/advertisers.component';
 import { AgencyComponent } from './../components/agency/agency.component';
+import {AdvertiserService} from './../shared/services/advertisers.service';
 // import { SITE_ROUTES} from './../routes/site.routes';
 
 const appRoutes: Routes = [
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     AdvertisersComponent,
     AgencyComponent
   ],
-  providers: [UserService],
+  providers: [UserService,AdvertiserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
